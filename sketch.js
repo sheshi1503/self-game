@@ -20,16 +20,16 @@ var score=0;
 
 var gameOver, restart;
 
-var vill,enem,village,background;
+var vill,enem,villages,background;
 
 
 localStorage["HighestScore"] = 0;
 
 
 function preload(){
-  trex_running =   loadAnimation("game png/villager png.png")
+  trex_running =   loadAnimation("game png/villager.png")
  
-trex_collided = loadAnimation("game png/villager png.png");
+trex_collided = loadAnimation("game png/villager.png");
 
 groundImage = loadImage("ground2.png");
   
@@ -37,17 +37,17 @@ groundImage = loadImage("ground2.png");
 cloudImage = loadImage("cloud.png");
   
  
-obstacle1 = loadImage("game png/enemy head png.png");
+obstacle1 = loadImage("game png/enhead.png");
   
-obstacle2 = loadImage("game png/enemy1 png.png");
+obstacle2 = loadImage("game png/en1.png");
 
-obstacle3 = loadImage("game png/enemy2 png.png");
+obstacle3 = loadImage("game png/en2.png");
   
-obstacle4 = loadImage("game png/enemy2 png.png");
+obstacle4 = loadImage("game png/en2.png");
 
-obstacle5 = loadImage("game png/enemy1 png.png");
+obstacle5 = loadImage("game png/en1.png");
   
-obstacle6 = loadImage("game png/enemy2 png.png");
+obstacle6 = loadImage("game png/en2.png");
   
  
  gameOverImg = loadImage("gameOver.png");
