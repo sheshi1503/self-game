@@ -20,7 +20,7 @@ var score=0;
 
 var gameOver, restart;
 
-var vill,enem,villages,background;
+var vill,enem,villages,backgroundn;
 
 
 localStorage["HighestScore"] = 0;
@@ -42,17 +42,14 @@ obstacle1 = loadImage("game png/enhead.png");
 obstacle2 = loadImage("game png/en1.png");
 
 obstacle3 = loadImage("game png/en2.png");
-  
-obstacle4 = loadImage("game png/en2.png");
 
-obstacle5 = loadImage("game png/en1.png");
-  
-obstacle6 = loadImage("game png/en2.png");
   
  
  gameOverImg = loadImage("gameOver.png");
 
   restartImg = loadImage("restart.png");
+
+  backgroundn = loadImage("game png/background.jpg")
 }
 
 
@@ -115,10 +112,12 @@ score = 0;
 function draw() {
   //trex.debug = true;
 
-  background("grey");
+  background(backgroundn);
   text("Score: "+ score, 500,50);
   
   if (gameState===PLAY){
+
+    trex.visible=true
     
 score = score + Math.round(getFrameRate()/60);
 
@@ -137,9 +136,15 @@ score = score + Math.round(getFrameRate()/60);
   
     trex.collide(invisibleGround);
     spawnClouds();
-    spawnObstacles();
+
+    randnum =Math.round(random(1,3)); 
+    spawnObstacles(randnum);
   
     if(obstaclesGroup.isTouching(trex)){
+       if (randnum === 1 || randnum === 3)
+   {
+    trex.visible=false
+   }
         gameState = END;
     }
   }
@@ -192,26 +197,19 @@ function spawnClouds() {
   
 }
 
-function spawnObstacles() {
+function spawnObstacles(randNum) {
   if(frameCount % 60 === 0) {
     var obstacle = createSprite(600,350,10,40);
     //obstacle.debug = true;
     obstacle.velocityX = -(6 + 3*score/100);
     
     //generate random obstacles
-    var rand = Math.round(random(1,6));
-    switch(rand) {
+    switch(randNum) {
       case 1: obstacle.addImage(obstacle1);
               break;
       case 2: obstacle.addImage(obstacle2);
               break;
       case 3: obstacle.addImage(obstacle3);
-              break;
-      case 4: obstacle.addImage(obstacle4);
-              break;
-      case 5: obstacle.addImage(obstacle5);
-              break;
-      case 6: obstacle.addImage(obstacle6);
               break;
       default: break;
     }
